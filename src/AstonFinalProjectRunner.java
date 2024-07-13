@@ -8,24 +8,28 @@ public class AstonFinalProjectRunner {
         ArrayList<Integer> arr = new ArrayList<>();
 
         while (!exit){
-            int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
-                    "1 -- рандомно, 2 -- вручную, 3 -- из файла");
+            int choice = Integer.parseInt(input.getUserChoice("Выберите способ заполнения коллекции:\n" +
+                    "1 -- рандомно, 2 -- вручную, 3 -- из файла"));
 
             // выбираем как заполнить коллекцию
             switch (choice){
                 case 1:
-                    int length1 = input.getUserChoice("\nВведите длину коллекции: ");
+                    int length1 = Integer.parseInt(input.getUserChoice("\nВведите длину коллекции: "));
                     ArrayUtils.fillArrByRandom(arr, length1);
                     ArrayUtils.printArray(arr);
                     break;
                 case 2:
 
                     // ---- красиво впихнуть метод из ArrayUtils
+                    String fileName = input.getUserChoice("\nВведите полное имя файла (включая путь): ");
+                    ArrayUtils.fillArrByFile(fileName);
+
 
                     break;
                 case 3:
 
                     // ---- красиво впихнуть метод из ArrayUtils
+
 
                     break;
                 default:
@@ -33,8 +37,8 @@ public class AstonFinalProjectRunner {
                     return;
             }
 
-            choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
-                    "1 -- Shell Sort, 2 -- Selection Sort");
+            choice = Integer.parseInt(input.getUserChoice("\nВыберите способ сортировки:\n" +
+                    "1 -- Shell Sort, 2 -- Selection Sort"));
 
             // выбираем как сортировать коллекцию
             switch (choice){
@@ -55,7 +59,7 @@ public class AstonFinalProjectRunner {
                     return;
             }
 
-            choice = input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново");
+            choice = Integer.parseInt(input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново"));
             if (choice == 1) exit = true;
         }
     }

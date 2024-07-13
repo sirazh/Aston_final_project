@@ -1,15 +1,20 @@
 import java.util.Scanner;
 
 public class UserInteraction {
-    private Scanner scanner;
+    private static Scanner scanner;
 
     public UserInteraction(){
         scanner = new Scanner(System.in);
     }
 
-    public int getUserChoice(String message){
+//    public int getUserChoice(String message){
+//        System.out.println(message);
+//        return scanner.nextInt();
+//    }
+
+    public String getUserChoice(String message){
         System.out.println(message);
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
 }

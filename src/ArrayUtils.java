@@ -1,4 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class ArrayUtils {
     // возможно понадобится отдельный приватный метод для заполнения коллекции,
@@ -20,14 +26,39 @@ public class ArrayUtils {
 
         // -------- логика для вводимых вручную значений (+ заполнение коллекции)
 
+
         return arr;
     }
 
-    public static ArrayList<Integer> fillArrByFile (ArrayList<Integer> arr){
+    public static ArrayList<Integer> fillArrByFile (String fileName){
 
         // -------- логика для данных из файла (+ заполнение коллекции)
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Введите имя файла:");
+//        String fileName = scanner.nextLine();
 
-        return arr;
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                try {
+                    int number = Integer.parseInt(line.trim());
+                    numbers.add(number);
+                } catch (NumberFormatException e) {
+                    System.out.println("Некорректная строка: " + line);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла: " + fileName);
+        }
+
+//        System.out.println("Считанный  из файла " + fileName + " массив чисел: " + numbers);
+        printArray(numbers);
+
+        return  numbers;
     }
 
     public static void printArray(ArrayList<Integer> arr){
