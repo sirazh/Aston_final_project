@@ -6,12 +6,12 @@ public class TestStrategy {
         BaseSorting shellSorting = new ShellSorting();
         BaseSorting selectionSorting = new SelectionSorting();
 
-        shellSorting.sort();
-        selectionSorting.sort();
-
-
-
-        shellSorting.setSortableStrategy(new SelectionSortStrategy());
-        shellSorting.sort();
+//        shellSorting.sort();
+//        selectionSorting.sort();
+//
+//
+//
+//        shellSorting.setSortableStrategy(new SelectionSortStrategy());
+//        shellSorting.sort();
     }
 }

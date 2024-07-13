@@ -6,8 +6,8 @@ abstract class BaseSorting {
     private SortableStrategy sortableStrategy;
     private ArrayList<Integer> arrayList;
 
-    public void sort(){
-        sortableStrategy.sort();
+    public void sort(ArrayList<Integer> array){
+        sortableStrategy.sort(array);
     }
 
     public void setSortableStrategy(SortableStrategy sortableStrategy){
