@@ -17,12 +17,16 @@ public class ArrayUtils {
 
     public static ArrayList<Integer> fillArrByInput (ArrayList<Integer> arr){
         UserInteraction userInteraction = new UserInteraction();
+
         // -------- логика для вводимых вручную значений (+ заполнение коллекции)
+
         return arr;
     }
 
     public static ArrayList<Integer> fillArrByFile (ArrayList<Integer> arr){
+
         // -------- логика для данных из файла (+ заполнение коллекции)
+
         return arr;
     }
 
