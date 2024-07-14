@@ -45,9 +45,7 @@ public class AstonFinalProjectRunner {
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
-
-                    // ---- впихнуть метод из SelectionSorting ----
-
+                    selectionSort.sort(arr);
                     ArrayUtils.printArray(arr);
                     break;
                 default:
