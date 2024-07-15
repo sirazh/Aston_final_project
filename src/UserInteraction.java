@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class UserInteraction {
-    private Scanner scanner;
+    private static Scanner scanner;
 
     public UserInteraction(){
         scanner = new Scanner(System.in);

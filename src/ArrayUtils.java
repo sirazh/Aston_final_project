@@ -1,4 +1,7 @@
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class ArrayUtils {
     // возможно понадобится отдельный приватный метод для заполнения коллекции,
@@ -15,19 +18,43 @@ public class ArrayUtils {
         return arr;
     }
 
-    public static ArrayList<Integer> fillArrByInput (ArrayList<Integer> arr){
-        UserInteraction userInteraction = new UserInteraction();
+    // --------------------------------- РУЧНОй ВВОД ------------------------------------
+    public static ArrayList<Integer> fillArrByInput (ArrayList<Integer> arr,  int length){
+//        UserInteraction userInteraction = new UserInteraction();
 
-        // -------- логика для вводимых вручную значений (+ заполнение коллекции)
+        System.out.println("Вводите каждый элемент с новой строки: ");
 
-        return arr;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
+            for (int i = 0; i < length; i++) {
+                arr.add(Integer.parseInt(br.readLine())); // добавляем элементы в коллекцию
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка ввода-вывода: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Введено некорректное число: " + e.getMessage());
+        }
+       return arr;
     }
 
+    // ------------------------ ЗАПОЛНЕНИЕ КОЛЛЕКЦИИ ИЗ ФАЙЛА ------------------------------------
     public static ArrayList<Integer> fillArrByFile (ArrayList<Integer> arr){
 
-        // -------- логика для данных из файла (+ заполнение коллекции)
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите имя файла:");
+        String fileName = scanner.nextLine();
 
-        return arr;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                    int number = Integer.parseInt(line.trim());
+                    arr.add(number);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл не найден: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла: " + fileName);
+        }
+        return  arr;
     }
 
     public static void printArray(ArrayList<Integer> arr){
