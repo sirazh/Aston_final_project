@@ -7,14 +7,9 @@ public class UserInteraction {
         scanner = new Scanner(System.in);
     }
 
-//    public int getUserChoice(String message){
-//        System.out.println(message);
-//        return scanner.nextInt();
-//    }
-
-    public String getUserChoice(String message){
+    public int getUserChoice(String message){
         System.out.println(message);
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
 
 }

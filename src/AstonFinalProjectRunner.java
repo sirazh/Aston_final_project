@@ -8,58 +8,53 @@ public class AstonFinalProjectRunner {
         ArrayList<Integer> arr = new ArrayList<>();
 
         while (!exit){
-            int choice = Integer.parseInt(input.getUserChoice("Выберите способ заполнения коллекции:\n" +
-                    "1 -- рандомно, 2 -- вручную, 3 -- из файла"));
+            int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
+                    "1 -- рандомно, 2 -- вручную, 3 -- из файла");
 
             // выбираем как заполнить коллекцию
             switch (choice){
                 case 1:
-                    int length1 = Integer.parseInt(input.getUserChoice("\nВведите длину коллекции: "));
-                    ArrayUtils.fillArrByRandom(arr, length1);
-                    ArrayUtils.printArray(arr);
+                    int length1 = input.getUserChoice("\nВведите длину коллекции: ");
+                    ArrayUtils.fillArrByRandom( new ArrayList<>(), length1);
                     break;
                 case 2:
-
-                    // ---- красиво впихнуть метод из ArrayUtils
-                    String fileName = input.getUserChoice("\nВведите полное имя файла (включая путь): ");
-                    ArrayUtils.fillArrByFile(fileName);
-
-
+                    // ---- Заполнение коллекции вручную
+                    int length2 = input.getUserChoice("\nВведите длину коллекции: ");
+                    ArrayUtils.fillArrByInput(new ArrayList<>(), length2);
                     break;
                 case 3:
-
-                    // ---- красиво впихнуть метод из ArrayUtils
-
-
+                    // ---- Заполнение коллекции из файла
+                    ArrayUtils.fillArrByFile(arr);
                     break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
             }
-
-            choice = Integer.parseInt(input.getUserChoice("\nВыберите способ сортировки:\n" +
-                    "1 -- Shell Sort, 2 -- Selection Sort"));
+            // Предварительно выводим элементы полученной коллекции
+            ArrayUtils.printArray(arr);
 
             // выбираем как сортировать коллекцию
+            choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
+                    "1 -- Shell Sort, 2 -- Selection Sort");
+
             switch (choice){
                 case 1:
                     BaseSorting shellSort = new ShellSorting();
                     shellSort.sort(arr);
-                    ArrayUtils.printArray(arr);
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
 
                     // ---- впихнуть метод из SelectionSorting ----
-
-                    ArrayUtils.printArray(arr);
                     break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
             }
 
-            choice = Integer.parseInt(input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново"));
+            ArrayUtils.printArray(arr);
+
+            choice = input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново");
             if (choice == 1) exit = true;
         }
     }
