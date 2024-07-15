@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AstonFinalProjectRunner {
@@ -59,5 +60,21 @@ public class AstonFinalProjectRunner {
             if (choice == 1) exit = true;
         }
     }
+//    int age = Integer.parseInt(validatedData(sc, "[0-9]+"));
+//    String name = validatedData(sc, "[a-zA-Z]+");
+//    static String validatedData(Scanner sc, String pattern) {
+//        String result = null;
+//        while (sc.hasNextLine()) {
+//            try {
+//                result = sc.next(pattern);
+//                System.out.println("Correct," + result);
+//                break;
+//            } catch (InputMismatchException e) {
+//                System.out.println("Incorrect. Try again");
+//                sc.nextLine();
+//            }
+//        }
+//        return result;
+//    }
 
 }
