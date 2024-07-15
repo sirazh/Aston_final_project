@@ -16,22 +16,23 @@ public class AstonFinalProjectRunner {
                 case 1:
                     int length1 = input.getUserChoice("\nВведите длину коллекции: ");
                     ArrayUtils.fillArrByRandom( new ArrayList<>(), length1);
+                    ArrayUtils.printArray(arr);
                     break;
                 case 2:
                     // ---- Заполнение коллекции вручную
                     int length2 = input.getUserChoice("\nВведите длину коллекции: ");
                     ArrayUtils.fillArrByInput(new ArrayList<>(), length2);
+                    ArrayUtils.printArray(arr);
                     break;
                 case 3:
                     // ---- Заполнение коллекции из файла
                     ArrayUtils.fillArrByFile(arr);
+                    ArrayUtils.printArray(arr);
                     break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
             }
-            // Предварительно выводим элементы полученной коллекции
-            ArrayUtils.printArray(arr);
 
             // выбираем как сортировать коллекцию
             choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
@@ -41,6 +42,7 @@ public class AstonFinalProjectRunner {
                 case 1:
                     BaseSorting shellSort = new ShellSorting();
                     shellSort.sort(arr);
+                    ArrayUtils.printArray(arr);
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
@@ -51,8 +53,6 @@ public class AstonFinalProjectRunner {
                     System.out.println("Нет такого варианта");
                     return;
             }
-
-            ArrayUtils.printArray(arr);
 
             choice = input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново");
             if (choice == 1) exit = true;
