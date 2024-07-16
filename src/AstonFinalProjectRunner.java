@@ -15,13 +15,13 @@ public class AstonFinalProjectRunner {
             switch (choice){
                 case 1:
                     int length1 = input.getUserChoice("\nВведите длину коллекции: ");
-                    ArrayUtils.fillArrByRandom( new ArrayList<>(), length1);
+                    ArrayUtils.fillArrByRandom(arr, length1);
                     ArrayUtils.printArray(arr);
                     break;
                 case 2:
                     // ---- Заполнение коллекции вручную
                     int length2 = input.getUserChoice("\nВведите длину коллекции: ");
-                    ArrayUtils.fillArrByInput(new ArrayList<>(), length2);
+                    ArrayUtils.fillArrByInput(arr, length2);
                     ArrayUtils.printArray(arr);
                     break;
                 case 3:
