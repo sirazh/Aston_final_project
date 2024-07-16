@@ -20,11 +20,11 @@ public class ArrayUtils {
 
     // --------------------------------- РУЧНОй ВВОД ------------------------------------
     public static ArrayList<Integer> fillArrByInput (ArrayList<Integer> arr,  int length){
-//        UserInteraction userInteraction = new UserInteraction();
-
         System.out.println("Вводите каждый элемент с новой строки: ");
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
+        // try-with-resources закрывает поток ввода везде, поэтому мы закроем его сами в конце мейна
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             for (int i = 0; i < length; i++) {
                 arr.add(Integer.parseInt(br.readLine())); // добавляем элементы в коллекцию
             }
@@ -54,6 +54,7 @@ public class ArrayUtils {
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла: " + fileName);
         }
+
         return  arr;
     }
 

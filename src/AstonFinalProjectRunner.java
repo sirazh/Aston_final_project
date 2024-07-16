@@ -1,11 +1,15 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class AstonFinalProjectRunner {
     public static void main(String[] args) {
-        boolean exit = false; // какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
+        boolean exit = false; // TODO: какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
         UserInteraction input = new UserInteraction();
         ArrayList<Integer> arr = new ArrayList<>();
+
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current working directory: " + currentDir);
+
 
         while (!exit){
             int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
@@ -34,6 +38,7 @@ public class AstonFinalProjectRunner {
                     return;
             }
 
+
             // выбираем как сортировать коллекцию
             choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
                     "1 -- Shell Sort, 2 -- Selection Sort");
@@ -46,13 +51,9 @@ public class AstonFinalProjectRunner {
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
-<<<<<<< HEAD
-
-                    // ---- впихнуть метод из SelectionSorting ----
-=======
                     selectionSort.sort(arr);
                     ArrayUtils.printArray(arr);
->>>>>>> origin/SelectionSorting
+
                     break;
                 default:
                     System.out.println("Нет такого варианта");
@@ -62,6 +63,9 @@ public class AstonFinalProjectRunner {
             choice = input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново");
             if (choice == 1) exit = true;
         }
+
+        // TODO: возможно есть менее топорное решение
+        input.closeScanner();
     }
 
 }

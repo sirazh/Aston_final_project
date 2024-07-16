@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class UserInteraction {
@@ -10,6 +11,10 @@ public class UserInteraction {
     public int getUserChoice(String message){
         System.out.println(message);
         return scanner.nextInt();
+    }
+
+    public void closeScanner(){
+        scanner.close();
     }
 
 }

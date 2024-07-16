@@ -16,7 +16,7 @@ public class SelectionSortStrategy implements SortableStrategy{
     }
 
     //поиск индекса минимального элемента части массива, где [start] - индекс начала поиска
-    public static int findMinElementIndex(ArrayList<Integer> array, int start){
+    private int findMinElementIndex(ArrayList<Integer> array, int start){
         int minIndex = start;
         int minValue = array.get(start);
         for(int i = start + 1; i < array.size(); i++){
