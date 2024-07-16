@@ -36,23 +36,29 @@ public class AstonFinalProjectRunner {
 
             // выбираем как сортировать коллекцию
             choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
-                    "1 -- Shell Sort, 2 -- Selection Sort");
+                    "1 -- Shell Sort, 2 -- Selection Sort, 3 -- Additional Selection Sorting, 4 -- Additional Shell Sorting");
 
             switch (choice){
                 case 1:
                     BaseSorting shellSort = new ShellSorting();
                     shellSort.sort(arr);
                     ArrayUtils.printArray(arr);
+
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
-<<<<<<< HEAD
-
-                    // ---- впихнуть метод из SelectionSorting ----
-=======
                     selectionSort.sort(arr);
                     ArrayUtils.printArray(arr);
->>>>>>> origin/SelectionSorting
+                    break;
+                case 3:
+                    BaseSorting dopSelectionSort = new DopSelectionSorting();
+                    dopSelectionSort.dopSort(arr);
+                    ArrayUtils.printArray(arr);
+                    break;
+                case 4:
+                    BaseSorting dopSellSort = new DopShellSorting();
+                    dopSellSort.dopSort(arr);
+                    ArrayUtils.printArray(arr);
                     break;
                 default:
                     System.out.println("Нет такого варианта");
