@@ -2,31 +2,51 @@ package com.example.strategy;
 
 import com.example.User;
 
+import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+
 
 public class DopShellSortingStrategy<T extends Comparable<T>> implements SortableStrategy<T> {
 
     @Override
     public void sort(ArrayList<T> array) {
-        // Создаем список для хранения четных чисел и их позиций
-        ArrayList<T> evenNumbers = new ArrayList<>();
-        ArrayList<Integer> evenPositions = new ArrayList<>(); // TODO заменить фигню
 
-        // Сохраняем четные числа и их позиции
-        for (int i = 0; i < array.size(); i++) {
-            if (isEven(array.get(i))) {
-                evenNumbers.add(array.get(i));
-                evenPositions.add(i);
+        //создаем массив с четными числами
+        ArrayList<T> tempArray = new ArrayList<>();
+        for (T t:array){
+            if (isEven(t)){
+                tempArray.add(t);
+                //меняем на нуллы
+                array.set(array.indexOf(t), null);
             }
         }
 
-        // Сортируем четные числа
-        Collections.sort(evenNumbers);
+        int n = tempArray.size();
+        int gap = n / 2;
+        while (gap > 0) {
+            for (int i = gap; i < n; i++) {
+                T temp = tempArray.get(i);
+                // Пропускаем нечетные числа
+                int j = i;
+                while (j >= gap && isEven(tempArray.get(j - gap)) && tempArray.get(j - gap).compareTo(temp) > 0) {
+                    tempArray.set(j, tempArray.get(j - gap));
+                    j -= gap;
+                }
+                tempArray.set(j, temp);
+            }
+            gap /= 2;
+        }
 
-        // Вставляем отсортированные четные числа обратно в исходный список на свои места
-        for (int i = 0; i < evenPositions.size(); i++) {
-            array.set(evenPositions.get(i), evenNumbers.get(i));
+
+        for (T t:tempArray){
+            for(int i = 0; i< array.size(); i++){
+                if(array.get(i) == null){
+                    array.set(i,t);
+                    break;
+                }
+            }
         }
     }
 
@@ -37,7 +57,12 @@ public class DopShellSortingStrategy<T extends Comparable<T>> implements Sortabl
         } else if (value instanceof User) {
             return ((User) value).getAge() % 2 == 0;
         } else {
-            throw new IllegalArgumentException("Тип значения должен быть целым числом или объектом класса User");
+            throw new IllegalArgumentException("Тип значения должен быть целым числом или объектом класса Юзер");
         }
     }
+
+
+
+
+
 }

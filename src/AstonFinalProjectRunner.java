@@ -110,7 +110,7 @@ public class AstonFinalProjectRunner {
                         ArrayUtils.printArray(intArr);
                     }
                     if (sortUsers) {
-                        userBaseSorting.setSortableStrategy(new SelectionSortStrategy<>());
+                        userBaseSorting.setSortableStrategy(new DopShellSortingStrategy<>());
                         userBaseSorting.sort(users);
                         ArrayUtils.printArray(users);
                     }
@@ -124,6 +124,7 @@ public class AstonFinalProjectRunner {
                         ArrayUtils.printArray(intArr);
                     }
                     if (sortUsers) {
+                        userBaseSorting.setSortableStrategy(new DopSelectionSortStrategy<>());
                         userBaseSorting.sort(users);
                         ArrayUtils.printArray(users);
                     }
