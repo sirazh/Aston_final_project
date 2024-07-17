@@ -1,4 +1,4 @@
-public class User {
+public class User implements Comparable<User>{
     private String name;
     private int age;
 
@@ -24,12 +24,16 @@ public class User {
         return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
     }
 
+    @Override
+    public int compareTo(User obj) {
+        return Integer.compare(this.age, obj.age);
+    }
+
     public static class UserBuilder {
         private User user;
 
-        public UserBuilder builder() {
+        public UserBuilder() {
             user = new User();
-            return this;
         }
 
         public UserBuilder setName(String name) {

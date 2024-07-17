@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -58,9 +59,9 @@ public class ArrayUtils {
         return  arr;
     }
 
-    public static void printArray(ArrayList<Integer> arr){
+    public static<T> void printArray(ArrayList<T> arr){
         System.out.println("\nЭлементы коллекции:");
-        for (Integer val: arr){
+        for (T val: arr){
             System.out.print(val + " ");
         }
         System.out.println();

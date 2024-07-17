@@ -1,20 +1,34 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.Arrays;
+
 
 public class AstonFinalProjectRunner {
     public static void main(String[] args) {
         boolean exit = false; // TODO: какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
         UserInteraction input = new UserInteraction();
         ArrayList<Integer> arr = new ArrayList<>();
+        boolean sortUsers  = false;
 
-        String currentDir = System.getProperty("user.dir");
-        System.out.println("Current working directory: " + currentDir);
+
+        ArrayList<User> users = new ArrayList<>(Arrays.asList(
+                new User.UserBuilder()
+                        .setAge(30)
+                        .setName("Masha")
+                        .build(),
+                new User.UserBuilder()
+                        .setAge(4)
+                        .setName("Pasha")
+                        .build(),
+                new User.UserBuilder()
+                        .setAge(15)
+                        .setName("Petya")
+                        .build()
+        ));
 
 
         while (!exit){
             int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
-                    "1 -- рандомно, 2 -- вручную, 3 -- из файла");
+                    "1 -- рандомно, 2 -- вручную, 3 -- из файла, 4 -- сортировка объектов User");
 
             // выбираем как заполнить коллекцию
             switch (choice){
@@ -34,6 +48,9 @@ public class AstonFinalProjectRunner {
                     ArrayUtils.fillArrByFile(arr);
                     ArrayUtils.printArray(arr);
                     break;
+                case 4:
+                    sortUsers = true;
+                    break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
@@ -47,14 +64,27 @@ public class AstonFinalProjectRunner {
             switch (choice){
                 case 1:
                     BaseSorting shellSort = new ShellSorting();
-                    shellSort.sort(arr);
-                    ArrayUtils.printArray(arr);
+                    if (!sortUsers){
+                        shellSort.sort(arr);
+                        ArrayUtils.printArray(arr);
+                    }
+                    if (sortUsers) {
+                        shellSort.sort(users);
+                        ArrayUtils.printArray(users);
+                    }
+                    sortUsers = false;
                     break;
                 case 2:
                     BaseSorting selectionSort = new SelectionSorting();
-                    selectionSort.sort(arr);
-                    ArrayUtils.printArray(arr);
-
+                    if (sortUsers == false) {
+                        selectionSort.sort(arr);
+                        ArrayUtils.printArray(arr);
+                    }
+                    if (sortUsers == true){
+                        selectionSort.sort(users);
+                        ArrayUtils.printArray(users);
+                    }
+                    sortUsers = false;
                     break;
                 default:
                     System.out.println("Нет такого варианта");
@@ -75,7 +105,6 @@ public class AstonFinalProjectRunner {
 //        while (sc.hasNextLine()) {
 //            try {
 //                result = sc.next(pattern);
-//                System.out.println("Correct," + result);
 //                break;
 //            } catch (InputMismatchException e) {
 //                System.out.println("Incorrect. Try again");
