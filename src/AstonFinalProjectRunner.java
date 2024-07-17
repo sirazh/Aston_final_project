@@ -1,3 +1,4 @@
+import strategy.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,6 +7,8 @@ public class AstonFinalProjectRunner {
         boolean exit = false; // какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
         UserInteraction input = new UserInteraction();
         ArrayList<Integer> arr = new ArrayList<>();
+        BaseSorting baseSorting = new BaseSorting();
+
 
         while (!exit){
             int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
@@ -40,24 +43,23 @@ public class AstonFinalProjectRunner {
 
             switch (choice){
                 case 1:
-                    BaseSorting shellSort = new ShellSorting();
-                    shellSort.sort(arr);
+                    baseSorting.setSortableStrategy(new ShellSortingStrategy());
+                    baseSorting.sort(arr);
                     ArrayUtils.printArray(arr);
-
                     break;
                 case 2:
-                    BaseSorting selectionSort = new SelectionSorting();
-                    selectionSort.sort(arr);
+                    baseSorting.setSortableStrategy(new SelectionSortStrategy());
+                    baseSorting.sort(arr);
                     ArrayUtils.printArray(arr);
                     break;
                 case 3:
-                    BaseSorting dopSelectionSort = new DopSelectionSorting();
-                    dopSelectionSort.dopSort(arr);
+                    baseSorting.setSortableStrategy(new DopShellSortingStrategy());
+                    baseSorting.sort(arr);
                     ArrayUtils.printArray(arr);
                     break;
                 case 4:
-                    BaseSorting dopSellSort = new DopShellSorting();
-                    dopSellSort.dopSort(arr);
+                    baseSorting.setSortableStrategy(new DopSelectionSortStrategy());
+                    baseSorting.sort(arr);
                     ArrayUtils.printArray(arr);
                     break;
                 default:

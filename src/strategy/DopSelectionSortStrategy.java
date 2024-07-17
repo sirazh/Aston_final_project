@@ -3,9 +3,9 @@ package strategy;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class DopSelectionSortStrategy implements DopSortableStrategy{
+public class DopSelectionSortStrategy implements SortableStrategy{
     @Override
-    public void dopSort(ArrayList<Integer> array) {
+    public void sort(ArrayList<Integer> array) {
         ArrayList<Integer> copy = array;
          //создаем отдельный массив для четных
         ArrayList<Integer> sortedEven = new ArrayList<>();

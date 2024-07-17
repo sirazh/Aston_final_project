@@ -6,7 +6,6 @@ public class ShellSortingStrategy implements SortableStrategy{
     @Override
     public void sort(ArrayList<Integer> array) {
         int n = array.size();
-
         // Начальное значение для разрыва
         for (int gap = n / 2; gap > 0; gap /= 2) {
             // Выполняем сортировку вставками для элементов, которые находятся на расстоянии gap друг от друга
