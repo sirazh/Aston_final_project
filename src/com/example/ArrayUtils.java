@@ -9,7 +9,7 @@ public class ArrayUtils {
     // чтобы не копипастить код заполнения во все методы
 
 
-    public static ArrayList<Integer> fillArrByRandom (ArrayList<Integer> arr, int length){
+    public static ArrayList<Integer> fillArrByRandom(ArrayList<Integer> arr, int length) {
 //   arr.size() вернёт 0, т.к. коллекция пустая, поэтому передаём длину, которую задал юзер
         for (int i = 0; i < length; i++) {
             // диапазон [-100; 100] для значений чисел
@@ -20,56 +20,73 @@ public class ArrayUtils {
     }
 
     // --------------------------------- РУЧНОй ВВОД ------------------------------------
-    public static ArrayList<Integer> fillArrByInput (ArrayList<Integer> arr,  int length){
+    public static ArrayList<Integer> fillArrByInput(ArrayList<Integer> arr, int length) {
         System.out.println("Вводите каждый элемент с новой строки: ");
 
         // try-with-resources закрывает поток ввода везде, поэтому мы закроем его сами в конце мейна
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            for (int i = 0; i < length; i++) {
-                arr.add(Integer.parseInt(br.readLine())); // добавляем элементы в коллекцию
+            int counter = 0;
+            while (counter < length) {
+                try {
+                    System.out.print("Введите число " + (counter + 1) + ": ");
+                    arr.add(Integer.parseInt(br.readLine())); // добавляем элементы в коллекцию
+                    counter++;
+                } catch (NumberFormatException e) {
+                    System.out.println("Введено некорректное число. Пожалуйста, попробуйте еще раз.");
+                }
             }
         } catch (IOException e) {
             System.out.println("Ошибка ввода-вывода: " + e.getMessage());
-        } catch (NumberFormatException e) {
-            System.out.println("Введено некорректное число: " + e.getMessage());
         }
-       return arr;
+        return arr;
     }
 
     // ------------------------ ЗАПОЛНЕНИЕ КОЛЛЕКЦИИ ИЗ ФАЙЛА ------------------------------------
-    public static ArrayList<Integer> fillArrByFile (ArrayList<Integer> arr){
-
+    public static ArrayList<Integer> fillArrByFile(ArrayList<Integer> arr) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя файла:");
-        String fileName = scanner.nextLine();
+        String fileName;
+        File file;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+        while (true) {
+            System.out.println("Введите имя файла:");
+            fileName = scanner.nextLine();
+            file = new File(fileName);
+
+            if (!file.exists() || !file.isFile()) {
+                System.out.println("Файл не найден: " + fileName);
+            } else {
+                break;
+            }
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
+                try {
                     int number = Integer.parseInt(line.trim());
                     arr.add(number);
+                } catch (NumberFormatException e) {
+                    System.out.println("Некорректная строка в файле, пропуск: " + line);
+                }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден: " + fileName);
         } catch (IOException e) {
             System.out.println("Ошибка при чтении файла: " + fileName);
         }
 
-        return  arr;
+        return arr;
     }
 
-    public static<T> void printArray(ArrayList<T> arr){
+    public static <T> void printArray(ArrayList<T> arr) {
         System.out.println("\nЭлементы коллекции:");
-        for (T val: arr){
+        for (T val : arr) {
             System.out.print(val + " ");
         }
         System.out.println();
     }
-
-
+    
     // после реализации функции, нужно будет подумать, как и где его впихнуть в бизнес-логику
-    private boolean validateData(){
+    private boolean validateData() {
         boolean valid = false;
 
         // ----- логика для валидации

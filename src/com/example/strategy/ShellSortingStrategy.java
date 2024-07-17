@@ -2,7 +2,7 @@ package com.example.strategy;
 
 import java.util.ArrayList;
 
-public class ShellSortingStrategy<T extends Comparable<T>> implements SortableStrategy<T>{
+public class ShellSortingStrategy<T extends Comparable<T>> implements SortableStrategy<T> {
 
     @Override
     public void sort(ArrayList<T> array) {

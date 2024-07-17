@@ -3,32 +3,30 @@ package com.example.strategy;
 import com.example.User;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 
 public class DopShellSortingStrategy<T extends Comparable<T>> implements SortableStrategy<T> {
 
     @Override
     public void sort(ArrayList<T> array) {
-        int n = array.size();
-        int gap = n / 2;
+        // Создаем список для хранения четных чисел и их позиций
+        ArrayList<T> evenNumbers = new ArrayList<>();
+        ArrayList<Integer> evenPositions = new ArrayList<>(); // TODO заменить фигню
 
-        while (gap > 0) {
-            for (int i = gap; i < n; i++) {
-                T temp = array.get(i);
-
-                // Пропускаем нечетные числа
-                if (!isEven(temp)) {
-                    continue;
-                }
-
-                int j = i;
-                while (j >= gap && isEven(array.get(j - gap)) && array.get(j - gap).compareTo(temp) > 0) {
-                    array.set(j, array.get(j - gap));
-                    j -= gap;
-                }
-                array.set(j, temp);
+        // Сохраняем четные числа и их позиции
+        for (int i = 0; i < array.size(); i++) {
+            if (isEven(array.get(i))) {
+                evenNumbers.add(array.get(i));
+                evenPositions.add(i);
             }
-            gap /= 2;
+        }
+
+        // Сортируем четные числа
+        Collections.sort(evenNumbers);
+
+        // Вставляем отсортированные четные числа обратно в исходный список на свои места
+        for (int i = 0; i < evenPositions.size(); i++) {
+            array.set(evenPositions.get(i), evenNumbers.get(i));
         }
     }
 
@@ -39,7 +37,7 @@ public class DopShellSortingStrategy<T extends Comparable<T>> implements Sortabl
         } else if (value instanceof User) {
             return ((User) value).getAge() % 2 == 0;
         } else {
-            throw new IllegalArgumentException("Тип значения должен быть целым числом или объектом класса Юзер");
+            throw new IllegalArgumentException("Тип значения должен быть целым числом или объектом класса User");
         }
     }
 }

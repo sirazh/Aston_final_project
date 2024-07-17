@@ -4,7 +4,7 @@ import com.example.User;
 
 import java.util.ArrayList;
 
-public class DopSelectionSortStrategy<T extends Comparable<T>> implements SortableStrategy<T>{
+public class DopSelectionSortStrategy<T extends Comparable<T>> implements SortableStrategy<T> {
     @Override
     public void sort(ArrayList<T> array) {
         int n = array.size();

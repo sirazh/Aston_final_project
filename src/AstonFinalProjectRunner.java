@@ -7,13 +7,11 @@ import com.example.strategy.ShellSortingStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
-
 public class AstonFinalProjectRunner {
     public static void main(String[] args) {
 
         boolean exit = false; // TODO: какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
-        boolean sortUsers  = false;
+        boolean sortUsers = false;
 
         UserInteraction input = new UserInteraction();
 
@@ -41,90 +39,87 @@ public class AstonFinalProjectRunner {
                         .setAge(168)
                         .setName("Petya")
                         .build()
-
         ));
 
 
-        while (!exit){
+        while (!exit) {
             int choice = input.getUserChoice("Выберите способ заполнения коллекции:\n" +
                     "1 -- рандомно, 2 -- вручную, 3 -- из файла, 4 -- сортировка объектов com.example.User");
 
             // выбираем как заполнить коллекцию
-            switch (choice){
+            switch (choice) {
                 case 1:
                     int length1 = input.getUserChoice("\nВведите длину коллекции: ");
                     ArrayUtils.fillArrByRandom(intArr, length1);
-                    ArrayUtils.printArray(intArr);
                     break;
                 case 2:
                     // ---- Заполнение коллекции вручную
                     int length2 = input.getUserChoice("\nВведите длину коллекции: ");
                     ArrayUtils.fillArrByInput(intArr, length2);
-                    ArrayUtils.printArray(intArr);
                     break;
                 case 3:
                     // ---- Заполнение коллекции из файла
                     ArrayUtils.fillArrByFile(intArr);
-                    ArrayUtils.printArray(intArr);
                     break;
                 case 4:
                     sortUsers = true;
+                    ArrayUtils.printArray(users);
                     break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
             }
-
+            ArrayUtils.printArray(intArr);
 
             // выбираем как сортировать коллекцию
             choice = input.getUserChoice("\nВыберите способ сортировки:\n" +
                     "1 -- Shell Sort, 2 -- Selection Sort, 3 -- Additional Shell Sort, 4 -- Additional Selection Sort");
 
-            switch (choice){
+            switch (choice) {
                 case 1:
-                    intBaseSorting.setSortableStrategy(new ShellSortingStrategy<>());
-                    if (!sortUsers){
+                    if (!sortUsers) {
+                        intBaseSorting.setSortableStrategy(new ShellSortingStrategy<>());
                         intBaseSorting.sort(intArr);
                         ArrayUtils.printArray(intArr);
                     }
                     if (sortUsers) {
+                        userBaseSorting.setSortableStrategy(new ShellSortingStrategy<>());
                         userBaseSorting.sort(users);
                         ArrayUtils.printArray(users);
                     }
                     sortUsers = false;
-                    intArr.clear();
                     break;
                 case 2:
-                    intBaseSorting.setSortableStrategy(new SelectionSortStrategy<>());
                     if (!sortUsers) {
+                        intBaseSorting.setSortableStrategy(new SelectionSortStrategy<>());
                         intBaseSorting.sort(intArr);
                         ArrayUtils.printArray(intArr);
                     }
-                    if (sortUsers){
+                    if (sortUsers) {
+                        userBaseSorting.setSortableStrategy(new SelectionSortStrategy<>());
                         userBaseSorting.sort(users);
                         ArrayUtils.printArray(users);
                     }
                     sortUsers = false;
-                    intArr.clear();
                     break;
 
                 case 3:
-                    intBaseSorting.setSortableStrategy(new DopShellSortingStrategy<>());
-                    if (!sortUsers){
+                    if (!sortUsers) {
+                        intBaseSorting.setSortableStrategy(new DopShellSortingStrategy<>());
                         intBaseSorting.sort(intArr);
                         ArrayUtils.printArray(intArr);
                     }
                     if (sortUsers) {
+                        userBaseSorting.setSortableStrategy(new SelectionSortStrategy<>());
                         userBaseSorting.sort(users);
                         ArrayUtils.printArray(users);
                     }
                     sortUsers = false;
-                    intArr.clear();
                     break;
 
                 case 4:
-                    intBaseSorting.setSortableStrategy(new DopSelectionSortStrategy<>());
-                    if(!sortUsers){
+                    if (!sortUsers) {
+                        intBaseSorting.setSortableStrategy(new DopSelectionSortStrategy<>());
                         intBaseSorting.sort(intArr);
                         ArrayUtils.printArray(intArr);
                     }
@@ -133,13 +128,13 @@ public class AstonFinalProjectRunner {
                         ArrayUtils.printArray(users);
                     }
                     sortUsers = false;
-                    intArr.clear();
                     break;
                 default:
                     System.out.println("Нет такого варианта");
                     return;
             }
 
+            intArr.clear();
             choice = input.getUserChoice("\n\nВыйти из цикла? 1 -- да, другой символ -- начать заново");
             if (choice == 1) exit = true;
         }
