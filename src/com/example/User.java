@@ -1,3 +1,5 @@
+package com.example;
+
 public class User implements Comparable<User>{
     private String name;
     private int age;
@@ -21,12 +23,16 @@ public class User implements Comparable<User>{
 
     @Override
     public String toString() {
-        return "User{" + "name='" + name + '\'' + ", age=" + age + '}';
+        return "com.example.User{" + "name='" + name + '\'' + ", age=" + age + '}';
     }
 
     @Override
     public int compareTo(User obj) {
         return Integer.compare(this.age, obj.age);
+    }
+
+    public int getAge() {
+        return this.age;
     }
 
     public static class UserBuilder {

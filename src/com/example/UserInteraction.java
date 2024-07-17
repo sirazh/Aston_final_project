@@ -1,4 +1,5 @@
-import java.io.IOException;
+package com.example;
+
 import java.util.Scanner;
 
 public class UserInteraction {

@@ -1,4 +1,4 @@
-package strategy;
+package com.example.strategy;
 
 import java.util.ArrayList;
 
@@ -21,16 +21,16 @@ public class SelectionSortStrategy<T extends Comparable<T>> implements SortableS
     }
 
     //поиск индекса минимального элемента части массива, где [start] - индекс начала поиска
-    private int findMinElementIndex(ArrayList<Integer> array, int start){
-        int minIndex = start;
-        int minValue = array.get(start);
-        for(int i = start + 1; i < array.size(); i++){
-            if(array.get(i) < minValue){
-                minValue = array.get(i);
-                minIndex = i;
-            }
-        }
-        return minIndex;
-    }
+//    private int findMinElementIndex(ArrayList<Integer> array, int start){
+//        int minIndex = start;
+//        int minValue = array.get(start);
+//        for(int i = start + 1; i < array.size(); i++){
+//            if(array.get(i) < minValue){
+//                minValue = array.get(i);
+//                minIndex = i;
+//            }
+//        }
+//        return minIndex;
+//    }
 
 }
