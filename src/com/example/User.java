@@ -18,9 +18,7 @@ public class User implements Comparable<User> {
     }
 
     public void setAge(int age) {
-        if (age >= 0 && age <= 120) {
             this.age = age;
-        } else throw new IllegalArgumentException("Возраст должен быть больше 0, но меньше 120 лет");
     }
 
 
