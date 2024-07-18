@@ -140,7 +140,6 @@ public class AstonFinalProjectRunner {
             if (choice == 1) exit = true;
         }
 
-        // TODO: возможно есть менее топорное решение
         input.closeScanner();
     }
 
