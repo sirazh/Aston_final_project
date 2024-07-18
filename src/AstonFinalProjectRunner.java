@@ -10,8 +10,8 @@ import java.util.Arrays;
 public class AstonFinalProjectRunner {
     public static void main(String[] args) {
 
-        boolean exit = false; // TODO: какое-то топорное решение для возможности выйти из цикла, мб можно как-то лучше
-        boolean sortUsers = false;
+        boolean exit = false; // булева переменная для выхода из цикла
+        boolean sortUsers = false; // булева переменная, определяющая объекты какого класса необходимо сортировать
 
         UserInteraction input = new UserInteraction();
 
@@ -36,7 +36,7 @@ public class AstonFinalProjectRunner {
                         .setName("Petya")
                         .build(),
                 new User.UserBuilder()
-                        .setAge(168)
+                        .setAge(98)
                         .setName("Petya")
                         .build()
         ));
