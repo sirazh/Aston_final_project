@@ -18,12 +18,15 @@ public class User implements Comparable<User> {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        if (age >= 0 && age <= 120) {
+            this.age = age;
+        } else throw new IllegalArgumentException("Возраст должен быть больше 0, но меньше 120 лет");
     }
+
 
     @Override
     public String toString() {
-        return "com.example.User{" + "name='" + name + '\'' + ", age=" + age + '}';
+        return "Имя: " + name + '\'' + ", Возраст: " + age ;
     }
 
     @Override
@@ -33,6 +36,10 @@ public class User implements Comparable<User> {
 
     public int getAge() {
         return this.age;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public static class UserBuilder {
